@@ -105,124 +105,303 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Write an SQL query to add a new column email of type TEXT to the Student_details table, and ensure that this column cannot contain NULL values and make default value as 'Invalid'
+
+For example:
+
+Test	Result
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, email) 
+VALUES (1, 'John Doe', 'M', 'Math', 'john@example.com');
+select * from Student_details;
+RollN  Name   Gen  Subject     email
+-----  -----  ---  ----------  ----------------
+1      John   M    Math        john@example.com
 
 ```sql
--- Paste your SQL code below for Question 1
+ALTER TABLE student_details
+ADD COLUMN email TEXT NOT NULL DEFAULT 'Invalid';
 ```
 
 **Output:**
+<img width="1252" height="363" alt="Screenshot 2025-10-06 132037" src="https://github.com/user-attachments/assets/d8be2d7c-6c33-4376-88ff-4931d726644f" />
 
-![Output1](output.png)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a table named Employees with the following constraints:
+
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Employees (
+EmployeeID INTEGER PRIMARY KEY, 
+FirstName TEXT NOT NULL, 
+LastName TEXT NOT NULL, 
+Email TEXT UNIQUE,
+Salary REAL CHECK(Salary > 0),
+DepartmentID INTEGER,
+FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
 ```
 
 **Output:**
+<img width="1228" height="535" alt="Screenshot 2025-10-06 132207" src="https://github.com/user-attachments/assets/ff25b905-0a8d-4c93-97eb-a1acc23a9412" />
 
-![Output2](output.png)
 
 **Question 3**
+
 ---
--- Paste Question 3 here
+Write a SQL query for adding a new column named "email" with the datatype VARCHAR(100) to the  table "customer" 
+
+Sample table: customer
+
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+ 
+
+For example:
+
+Test	Result
+pragma table_info('customer');
+cid         name         type                               notnull     dflt_value  pk
+----------  -----------  ---------------------------------  ----------  ----------  ----------
+0           customer_id  integer primarykey auto increment  0                       0
+1           cust_name    varchar2(30)                       0                       0
+2           city         varchar(30)                        0                       0
+3           grade        number                             0                       0
+4           salesman_id  number                             0                       0
+5           email        VARCHAR(100)  
 
 ```sql
--- Paste your SQL code below for Question 3
+ALTER TABLE customer
+ADD COLUMN email VARCHAR(100);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="862" height="392" alt="Screenshot 2025-10-06 132311" src="https://github.com/user-attachments/assets/d5f3cd92-a964-40f1-ae89-ccb42092d1e2" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
+For example:
+
+Test	Result
+INSERT INTO Shipments (ShipmentID, ShipmentDate, SupplierID, OrderID) VALUES (2, '2024-08-03', 99, 1);
+Error: FOREIGN KEY constraint failed
+
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE Shipments(
+ShipmentID INTEGER PRIMARY KEY,
+ShipmentDate DATE,
+SupplierID INTEGER,
+OrderID INTEGER,
+FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
+FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="884" height="324" alt="Screenshot 2025-10-06 132351" src="https://github.com/user-attachments/assets/6655b3bc-3f34-473d-9192-eb13651f9024" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Insert all customers from Old_customers into Customers
+
+Table attributes are CustomerID, Name, Address, Email
+
+For example:
+
+Test	Result
+select * from Customers;
+CustomerID  Name             Address         Email
+----------  ---------------  --------------  ---------------------
+301         Michael Johnson  123 Elm Street  michael.j@example.com
+302         Sarah Lee        456 Oak Avenue  sarah.lee@example.com
+303         David Wilson     789 Pine Road   david.w@example.com
+
 
 ```sql
--- Paste your SQL code below for Question 5
+Insert or IGNORE into
+Customers (CustomerID, Name, Address, Email)
+select CustomerID, Name, Address, Email from Old_customers;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="845" height="362" alt="Screenshot 2025-10-06 132431" src="https://github.com/user-attachments/assets/553679e6-9b47-4cd1-82c8-7e557513f49c" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a table named Department with the following constraints:
+DepartmentID as INTEGER should be the primary key.
+DepartmentName as TEXT should be unique and not NULL.
+Location as TEXT.
+For example:
+
+Test	Result
+INSERT INTO Department (DepartmentID, DepartmentName, Location) VALUES (1, 'Human Resources', 'New York');
+select * from Department;
 
 ```sql
--- Paste your SQL code below for Question 6
+create table Department(
+DepartmentID PRIMARY KEY, DepartmentName TEXT UNIQUE NOT NULL,
+Location TEXT 
+);
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="857" height="355" alt="Screenshot 2025-10-06 132507" src="https://github.com/user-attachments/assets/16182ce4-d0b7-43aa-8d7e-7b79120a81ea" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a table named Invoices with the following constraints:
+
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+DueDate as DATE should be greater than the InvoiceDate.
+Amount as REAL should be greater than 0.
+For example:
+
+Test	Result
+INSERT INTO Invoices (InvoiceID, InvoiceDate)
+VALUES (1, '2024-08-08'),(1,'2024-09-08');
+Error: UNIQUE constraint failed: Invoices.InvoiceID
 
 ```sql
--- Paste your SQL code below for Question 7
+create table Invoices(
+InvoiceID PRIMARY KEY,
+InvoiceDate DATE,
+DueDate DATE check(DueDate > InvoiceDate),
+Amount REAL check(Amount > 0)
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="853" height="355" alt="Screenshot 2025-10-06 132534" src="https://github.com/user-attachments/assets/c0a5a499-9465-461e-a4a5-6ecdc4f77be0" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+RollNo      Name            Gender      Subject      MARKS
+----------  ------------    ----------  ----------   ----------
+205         Olivia Green    F
+207         Liam Smith      M           Mathematics  85
+208         Sophia Johnson  F           Science
+For example:
+
+Test	Result
+select * from Student_details;
+RollNo      Name          Gender      Subject     MARKS
+----------  ------------  ----------  ----------  ----------
+205         Olivia Green  F
+207         Liam Smith    M           Mathematic  85
+208         Sophia Johns  F           Science
 
 ```sql
--- Paste your SQL code below for Question 8
+insert into 
+Student_details(RollNo, Name, Gender, Subject, MARKS) VALUES
+(205, 'Olivia Green', 'F', '', ''),
+(207, 'Liam Smith', 'M', 'Mathematic', '85'),
+(208, 'Sophia Johns', 'F', 'Science', '');
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="866" height="374" alt="Screenshot 2025-10-06 132602" src="https://github.com/user-attachments/assets/b9de5287-b6f3-4979-a57a-a70b01373778" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Insert the below data into the Books table, allowing the Publisher and Year columns to take their default values.
+
+ISBN             Title                 Author
+---------------  --------------------  ---------------
+978-6655443321   Big Data Analytics    Karen Adams
+
+Note: The Publisher and Year columns will use their default values.
+ 
+ 
+For example:
+
+Test	Result
+SELECT ISBN, Title, Author
+FROM Books 
+
+
+ISBN             Title                 Author
+---------------  --------------------  ---------------
+978-6655443321   Big Data Analytics    Karen Adams
 
 ```sql
--- Paste your SQL code below for Question 9
+Insert into
+Books(ISBN, Title, Author) VALUES
+('978-6655443321', 'Big Data Analytics', 'Karen Adams');
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="861" height="400" alt="Screenshot 2025-10-06 132622" src="https://github.com/user-attachments/assets/9fec4a12-1866-4223-9029-62e3f4252db6" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Customers with the following columns:
+
+CustomerID as INTEGER
+Name as TEXT
+Email as TEXT
+JoinDate as DATETIME
+For example:
+
+Test	Result
+pragma table_info('Customers');
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           CustomerID  INTEGER     0                       0
+1           Name        TEXT        0                       0
+2           Email       TEXT        0                       0
+3           JoinDate    DATETIME    0                       0
+
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Customers(
+CustomerID INTEGER,
+Name TEXT,
+Email TEXT,
+JoinDate DATETIME
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="864" height="490" alt="Screenshot 2025-10-06 132650" src="https://github.com/user-attachments/assets/92a3a112-7b32-4de5-9acb-aa320536f7d9" />
 
+## Screenshot of Module 1 SEB Completion Grades
+
+<img width="1292" height="413" alt="image" src="https://github.com/user-attachments/assets/fd8a363d-e0b1-4ae8-8bfa-281b17d3eef9" />
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
