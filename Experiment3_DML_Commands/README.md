@@ -47,123 +47,180 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ```
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL statement to Update the per_unit_price to 25 and total_price accordingly in purchases table where purchase_date is '2022-08-15' and product_id is 12.
+
+
 
 ```sql
--- Paste your SQL code below for Question 1
+update purchases
+set per_unit_price = 25, 
+total_price = quantity*25
+where purchase_date = '2022-08-15'
+and product_id = 12;
 ```
 
 **Output:**
+<img width="1180" height="530" alt="Screenshot 2025-10-15 102703" src="https://github.com/user-attachments/assets/66651fc8-2a79-4215-89f5-e12d0f464aec" />
 
-![Output1](output.png)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Update the reorder level to 40 pieces for all products belonging to the 'Grocery' category in the products table.
+
+
+
 
 ```sql
--- Paste your SQL code below for Question 2
+update products
+set reorder_lvl = 40
+where category = 'Grocery';
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1188" height="401" alt="Screenshot 2025-10-15 102713" src="https://github.com/user-attachments/assets/c090f713-acc8-47ae-8369-ecaab53a5d89" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL statement to change the first_name column of employees table with 'John' for those employees whose department_id is 80 and gets a commission_pct below 0.35.
 
-```sql
--- Paste your SQL code below for Question 3
+
+
+```sqlupdate employees
+set first_name = 'John'
+where department_id = 80 and commission_pct < 0.35;
 ```
 
 **Output:**
+<img width="1190" height="541" alt="Screenshot 2025-10-15 102726" src="https://github.com/user-attachments/assets/5a0e53b0-6930-4362-9750-b0702ece8be2" />
 
-![Output3](output.png)
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL statement to Change the supplier name to 'A1 Suppliers' where the supplier ID is 8 in the suppliers table.
+
+Table info
+
+suppliers(supplier_id,supplier_name,contact_person,phone_number,email,address)
+
+
+
 
 ```sql
--- Paste your SQL code below for Question 4
+UPDATE suppliers
+set supplier_name = 'A1 Suppliers'
+WHERE supplier_id = 8;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1185" height="409" alt="Screenshot 2025-10-15 102736" src="https://github.com/user-attachments/assets/177a0554-e2d9-4d6b-b1eb-7ebd32c619e4" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to Delete All Doctors with a NULL Specialization
+
 
 ```sql
--- Paste your SQL code below for Question 5
+delete from doctors
+where specialization IS NULL;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1183" height="953" alt="Screenshot 2025-10-15 102749" src="https://github.com/user-attachments/assets/358e799a-24c7-485a-9bbb-49045e1bdbc6" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to Delete customers with following conditions
+
+'CUST_COUNTRY' is not in a list of specified countries ('UK', 'USA', 'Canada')
+'GRADE' is greater than or equal to 3
+
 
 ```sql
--- Paste your SQL code below for Question 6
+delete from Customer
+where CUST_COUNTRY NOT IN ('UK', 'USA', 'Canada') AND GRADE >= 3;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1206" height="431" alt="Screenshot 2025-10-15 102804" src="https://github.com/user-attachments/assets/86a53594-8aee-4348-8f0e-d29c63cf9382" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to Delete customers from 'customer' table where 'OPENING_AMT' is between 4000 and 6000.
+
 
 ```sql
--- Paste your SQL code below for Question 7
+delete from customer
+where "OPENING_AMT" BETWEEN 4000 AND 6000;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1184" height="600" alt="Screenshot 2025-10-15 102817" src="https://github.com/user-attachments/assets/13971112-bfac-4d54-8eb2-b2b0e0ab4e1b" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to remove rows from the table 'customer' with the following condition -
+
+1. 'cust_country' must be 'India',
+
+2. 'cus_city' must not be 'Chennai',
+
+
+
+
 
 ```sql
--- Paste your SQL code below for Question 8
+DELETE FROM customer
+where cust_country = 'India' and cust_city != 'Chennai';
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1180" height="876" alt="Screenshot 2025-10-15 102829" src="https://github.com/user-attachments/assets/7153b87a-55ef-437b-969a-acc75e598e4a" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a SQL query to Delete customers from 'customer' table where 'CUST_COUNTRY' is neither 'India' nor 'USA'.
+
+
 
 ```sql
--- Paste your SQL code below for Question 9
+delete FROM customer 
+where CUST_COUNTRY NOT IN ('India', 'USA');
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1190" height="544" alt="Screenshot 2025-10-15 102842" src="https://github.com/user-attachments/assets/83f4d36a-9e2b-4c92-9b00-69d82b354159" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL statement to Display the order number, orderdate and the purchase amount of
+orders table which will be delivered by the salesman with ID 5001.
+
+
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT order_no, order_date, purch_amt from orders where salesman_id = 5001;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="852" height="381" alt="Screenshot 2025-10-15 102849" src="https://github.com/user-attachments/assets/f0d6f6af-011a-4aad-956c-d850f7aa216d" />
+
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
