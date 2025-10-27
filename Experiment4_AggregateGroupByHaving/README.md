@@ -37,124 +37,279 @@ HAVING condition;
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+--How many medical records does each doctor have?
+
+Sample table:MedicalRecords Table
+
+
+
+For example:
+
+Result
+DoctorID    TotalRecords
+----------  ------------
+3           4
+5           1
+6           1
+7           1
+8           3
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT DoctorID, COUNT(*) as TotalRecords 
+FROM MedicalRecords
+Group By DoctorID;
 ```
 
 **Output:**
+<img width="663" height="658" alt="Screenshot 2025-10-27 133645" src="https://github.com/user-attachments/assets/e15ce187-8936-48e8-900d-5105ffa0e048" />
 
-![Output1](output.png)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+What is the count of male and female patients?
+
+Sample table: Patients Table
+
+
+
+For example:
+
+Result
+Gender      TotalPatients
+----------  -------------
+Female      5
+Male        5
+
 
 ```sql
--- Paste your SQL code below for Question 2
+select Gender, COUNT(*) as TotalPatients 
+From Patients
+Group by Gender;
+
 ```
 
 **Output:**
+<img width="703" height="429" alt="Screenshot 2025-10-27 133653" src="https://github.com/user-attachments/assets/4894715c-d78c-4191-a312-1ac8b96fb0e1" />
 
-![Output2](output.png)
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to find how many employees have an income greater than 50K?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
+
+For example:
+
+Result
+employees_count
+---------------
+8
+
 
 ```sql
--- Paste your SQL code below for Question 3
+select COUNT(*) AS employees_count
+from employee
+where income > 50000;
 ```
 
 **Output:**
+<img width="607" height="384" alt="Screenshot 2025-10-27 133658" src="https://github.com/user-attachments/assets/6f4ca358-537d-4d71-ac12-cefe1956ee68" />
 
-![Output3](output.png)
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to find the shortest email address in the customer table?
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT   
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+name        email           min_email_length
+----------  --------------  ----------------
+Ravi Kumar  ravi@gmail.com  14
 
 ```sql
--- Paste your SQL code below for Question 4
+select name, email, LENGTH(email) as min_email_length
+FROM customer
+WHERE LENGTH(email) = (
+SELECT MIN(LENGTH(email)) FROM customer
+)
+LIMIT 1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1066" height="331" alt="Screenshot 2025-10-27 133713" src="https://github.com/user-attachments/assets/11b2ab6d-efed-4798-99f6-a3e3380a49b2" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to find the customer with longest name?
+
+Table: customer
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+city        TEXT
+email       TEXT
+phone       INTEGER
+For example:
+
+Result
+name          length
+------------  ----------
+Preeti Patel  12
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT name, LENGTH(name) as length
+FROM customer
+WHERE LENGTH(name) = (SELECT MAX(LENGTH(name)) FROM customer)
+LIMIT 1;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="728" height="318" alt="Screenshot 2025-10-27 133719" src="https://github.com/user-attachments/assets/0f02a688-dbd4-4137-aac9-5c5cd8762450" />
+
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to find the total income of employees aged 40 or above.
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
+For example:
+
+Result
+total_income
+------------
+1800000
+
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT SUM(income) as total_income
+from employee
+where age>=40;
 ```
 
 **Output:**
+<img width="496" height="321" alt="Screenshot 2025-10-27 133726" src="https://github.com/user-attachments/assets/e07c4386-d701-4d5d-9570-9ac22f78474c" />
 
-![Output6](output.png)
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write the SQL query that accomplishes the selection of average price for each category from the "products" table and includes only those products where the average price falls between 10 and 15.
+
+Sample table: products
+
+
+
+For example:
+
+Result
+category_id  AVG(Price)
+-----------  ----------
+1            12.375
+
 
 ```sql
--- Paste your SQL code below for Question 7
+select category_id, AVG(Price)
+from products
+group by category_id
+Having AVG(price) BETWEEN 10 and 15;
 ```
 
 **Output:**
+<img width="696" height="343" alt="Screenshot 2025-10-27 133732" src="https://github.com/user-attachments/assets/9b3e0dca-6351-442b-835a-08b45f232884" />
 
-![Output7](output.png)
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the minimum work hours for each date, and excludes dates where the minimum work hour is not less than 10.
+
+Sample table: employee1
+
+
+
+For example:
+
+Result
+jdate       MIN(workhour)
+----------  -------------
+2002.0      9
+2004.0      9
+2006.0      9
 
 ```sql
--- Paste your SQL code below for Question 8
+select jdate, MIN(workhour) 
+from employee1
+group by jdate HAVING
+MIN(workhour) < 10;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="692" height="431" alt="Screenshot 2025-10-27 133737" src="https://github.com/user-attachments/assets/34f3078a-5aed-4103-b1f7-976e4208c601" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write an SQL query that groups the customer data into 5-year age intervals, calculates the minimum salary for each group, and excludes groups where the minimum salary is not less than 2000.
+
+Table: customer1
+
+
+
+For example:
+
+Result
+age_group   MIN(salary)
+----------  -----------
+25          1500
 
 ```sql
--- Paste your SQL code below for Question 9
+select (age/5) * 5 as age_group, MIN(salary)
+from customer1
+GROUP BY (age/5) * 5
+HAVING MIN(salary) < 2000;
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="671" height="350" alt="Screenshot 2025-10-27 133743" src="https://github.com/user-attachments/assets/d70d2c85-0ba6-4690-b03e-4235096128ea" />
 
-**Question 10**
----
--- Paste Question 10 here
-
-```sql
--- Paste your SQL code below for Question 10
-```
-
-**Output:**
-
-![Output10](output.png)
 
 
 ## RESULT
